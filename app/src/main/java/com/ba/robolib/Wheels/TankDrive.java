@@ -1,4 +1,4 @@
-package com.ba.robolib.Wheels;
+package com.ba.robolib.wheels;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
