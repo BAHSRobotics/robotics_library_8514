@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RoboLib.iml" filepath="$PROJECT_DIR$/RoboLib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RoboLib/RoboLib.iml" filepath="$PROJECT_DIR$/RoboLib/RoboLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/robotics_library_8514.iml" filepath="$PROJECT_DIR$/robotics_library_8514.iml" />
     </modules>
   </component>
 </project>
