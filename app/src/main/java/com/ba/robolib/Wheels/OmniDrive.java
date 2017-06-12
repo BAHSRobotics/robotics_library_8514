@@ -40,10 +40,10 @@ public class OmniDrive {
   }
 
   public void move(double power, String side) {
-    if (side.equals("r")) {
+    if (side.equals("right")) {
       br.setPower(power);
       fr.setPower(power);
-    } else if (side.equals("l")) {
+    } else if (side.equals("left")) {
       bl.setPower(power);
       fl.setPower(power);
     }
