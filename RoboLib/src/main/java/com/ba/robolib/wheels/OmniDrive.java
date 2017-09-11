@@ -6,46 +6,47 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class OmniDrive {
 
-  private DcMotor fr; // Front right
-  private DcMotor fl; // Front left
-  private DcMotor br; // Back right
-  private DcMotor bl; // Back left
+  private DcMotor[] wheels = new DcMotor[4];
 
-  public OmniDrive(HardwareMap hardwareMap) {
+  public OmniDrive(HardwareMap hardwareMap, String rightFrontMotor, String rightBackMotor, String leftFrontMotor, String leftBackMotor) {
     // Maps hardware
-    br = hardwareMap.dcMotor.get("br");
-    bl = hardwareMap.dcMotor.get("bl");
-    fr = hardwareMap.dcMotor.get("fr");
-    fl = hardwareMap.dcMotor.get("fl");
+    wheels[0] = hardwareMap.dcMotor.get(rightFrontMotor);
+    wheels[1] = hardwareMap.dcMotor.get(rightBackMotor);
+    wheels[2] = hardwareMap.dcMotor.get(leftBackMotor);
+    wheels[3] = hardwareMap.dcMotor.get(leftFrontMotor);
 
     // Sets directions
-    fr.setDirection(DcMotor.Direction.REVERSE);
-    br.setDirection(DcMotor.Direction.REVERSE);
-    fl.setDirection(DcMotor.Direction.FORWARD);
-    bl.setDirection(DcMotor.Direction.FORWARD);
+    wheels[0].setDirection(DcMotor.Direction.REVERSE);
+    wheels[1].setDirection(DcMotor.Direction.REVERSE);
+    wheels[2].setDirection(DcMotor.Direction.FORWARD);
+    wheels[3].setDirection(DcMotor.Direction.FORWARD);
   }
 
   public void move(double power) {
-    br.setPower(power);
-    bl.setPower(power);
-    fr.setPower(power);
-    fl.setPower(power);
+    for (DcMotor wheel: wheels) {
+      wheel.setPower(power);
+    }
   }
 
   public void move(double power, Vector4 directions) {
-    br.setPower(directions.getW() * power);
-    bl.setPower(directions.getX() * power);
-    fr.setPower(directions.getY() * power);
-    fl.setPower(directions.getZ() * power);
+    wheels[0].setPower(directions.getW() * power);
+    wheels[1].setPower(directions.getX() * power);
+    wheels[2].setPower(directions.getY() * power);
+    wheels[3].setPower(directions.getZ() * power);
   }
 
   public void move(double power, String side) {
     if (side.equals("right")) {
-      br.setPower(power);
-      fr.setPower(power);
+      wheels[0].setPower(power);
+      wheels[2].setPower(power);
     } else if (side.equals("left")) {
-      bl.setPower(power);
-      fl.setPower(power);
+      wheels[1].setPower(power);
+      wheels[3].setPower(power);
+    }
+  }
+  public void stop() {
+    for (DcMotor wheel: wheels) {
+      wheel.setPower(0);
     }
   }
 }
